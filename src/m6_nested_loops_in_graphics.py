@@ -148,8 +148,8 @@ def draw_wall_on_right(rectangle, n, window):
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
     #
-    start1x = rectangle.corner_1.x
-    start2x = rectangle.corner_2.x
+    rect_c1_x = rectangle.corner_1.x
+    rect_c2_x = rectangle.corner_2.x
     delta_x = abs(rectangle.corner_2.x - rectangle.corner_1.x)
     delta_y = abs(rectangle.corner_2.y - rectangle.corner_1.y)
     print(delta_x, delta_y)
@@ -162,8 +162,8 @@ def draw_wall_on_right(rectangle, n, window):
             rectangle.corner_1.x -= delta_x
         rectangle.corner_1.y += delta_y
         rectangle.corner_2.y += delta_y
-        rectangle.corner_2.x = start2x
-        rectangle.corner_1.x = start1x
+        rectangle.corner_2.x = rect_c2_x
+        rectangle.corner_1.x = rect_c1_x
 
 
 # ----------------------------------------------------------------------
