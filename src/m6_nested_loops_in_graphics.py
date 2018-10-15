@@ -80,7 +80,7 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # D: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
     original_x = circle.center.x
@@ -89,19 +89,21 @@ def draw_L(window, circle, r, c):
             new_circle = rg.Circle(rg.Point(circle.center.x, circle.center.y), circle.radius)
             new_circle.fill_color = circle.fill_color
             new_circle.attach_to(window)
-            window.render(0.05)
+            window.render()
             circle.center.x += 2 * circle.radius
         circle.center.y += 2 * circle.radius
         circle.center.x = original_x
+    ##
     circle.center.x += 6*circle.radius
     circle.center.y -= 6*circle.radius
+    ##
     original_x = circle.center.x
     for i in range(3):
         for j in range(c):
             new_circle = rg.Circle(rg.Point(circle.center.x, circle.center.y), circle.radius)
             new_circle.fill_color = circle.fill_color
             new_circle.attach_to(window)
-            window.render(0.05)
+            window.render()
             circle.center.x += 2 * circle.radius
         circle.center.y += 2 * circle.radius
         circle.center.x = original_x
@@ -146,20 +148,22 @@ def draw_wall_on_right(rectangle, n, window):
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
     #
-    rect1x = rectangle.corner_1.x
-    rect2x = rectangle.corner_2.x
+    start1x = rectangle.corner_1.x
+    start2x = rectangle.corner_2.x
+    delta_x = abs(rectangle.corner_2.x - rectangle.corner_1.x)
+    delta_y = abs(rectangle.corner_2.y - rectangle.corner_1.y)
+    print(delta_x, delta_y)
     for i in range(n):
-        for j in range(i+1):
+        for j in range(i + 1):
             new_rect = rg.Rectangle(rectangle.corner_1, rectangle.corner_2)
             new_rect.attach_to(window)
-            window.render(0.05)
-            rectangle.corner_2.x -= abs(rectangle.corner_2.x-rectangle.corner_1.x)
-            rectangle.corner_1.x -= abs(rectangle.corner_2.x-rectangle.corner_1.x)
-        rectangle.corner_2.x = rect2x
-        rectangle.corner_2.x = rect1x
-        rectangle.corner_1.y -= abs(rectangle.corner_2.y-rectangle.corner_1.y)
-        rectangle.corner_2.y -= abs(rectangle.corner_2.y-rectangle.corner_1.y)
-
+            window.render()
+            rectangle.corner_2.x -= delta_x
+            rectangle.corner_1.x -= delta_x
+        rectangle.corner_1.y += delta_y
+        rectangle.corner_2.y += delta_y
+        rectangle.corner_2.x = start2x
+        rectangle.corner_1.x = start1x
 
 
 # ----------------------------------------------------------------------
